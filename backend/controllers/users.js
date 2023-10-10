@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const User = require('../models/user');
 
 function getUsers(req, res, next) {
@@ -17,10 +19,20 @@ function getUserByID(req, res, next) {
 }
 
 function createUser(req, res, next) {
-  const { name, about, avatar } = req.body;
+  const { email, password, name, about, avatar } = req.body;
 
-  User.create({ name, about, avatar })
-    .then((user) => res.send({ data: user }))
+  bcrypt
+    .hash(password, 10)
+    .then((hash) => {
+      User.create({
+        email,
+        password: hash,
+        about,
+        avatar,
+      })
+        .then((user) => res.send({ data: user }))
+        .catch(next);
+    })
     .catch(next);
 }
 
