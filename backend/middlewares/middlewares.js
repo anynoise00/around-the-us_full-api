@@ -4,23 +4,13 @@ function errorHandler(err, req, res, next) {
     return;
   }
 
-  if (err.name === 'ValidationError') {
-    res.status(400).send({ message: 'Os dados enviados são inválidos.' });
-    return;
-  }
+  const { statusCode = 500, message } = err;
 
-  if (err.name === 'DocumentNotFoundError') {
-    res
-      .status(404)
-      .send({ message: 'O recurso solicitado não foi encontrado.' });
-    return;
-  }
+  console.log(err);
 
-  if (err.name === 'CastError') {
-    res.status(404).send({ message: 'O ID da solicitação é inválido.' });
-    return;
-  }
-  res.status(500).json({ message: 'Um erro ocorreu no servidor.' });
+  res.status(statusCode).send({
+    message: statusCode === 500 ? 'Um erro ocorreu no servidor.' : message,
+  });
 }
 
 function routeNotFound(req, res) {

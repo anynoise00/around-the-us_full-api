@@ -8,9 +8,13 @@ const {
   createUser,
   updateProfile,
   updateAvatar,
+  getCurrentUser,
 } = require('../controllers/users');
 
 router.get('/', getUsers);
+
+router.get('/me', getCurrentUser);
+
 router.get(
   '/:id',
   celebrate({
@@ -20,6 +24,7 @@ router.get(
   }),
   getUserByID
 );
+
 router.post(
   '/',
   celebrate({
@@ -33,6 +38,7 @@ router.post(
   }),
   createUser
 );
+
 router.patch(
   '/me',
   celebrate({
@@ -43,6 +49,7 @@ router.patch(
   }),
   updateProfile
 );
+
 router.patch(
   '/me/avatar',
   celebrate({

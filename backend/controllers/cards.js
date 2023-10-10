@@ -1,8 +1,10 @@
+const ForbiddenError = require('../errors/forbidden-error');
+const ResourceNotFoundError = require('../errors/resource-not-found-error');
 const Card = require('../models/card');
 
 function getCards(req, res, next) {
   Card.find({})
-    .orFail()
+    .orFail(new ResourceNotFoundError())
     .then((cards) => res.send(cards))
     .catch(next);
 }
@@ -18,9 +20,17 @@ function createCard(req, res, next) {
 function deleteCard(req, res, next) {
   const { id } = req.params;
 
-  Card.findByIdAndDelete(id)
-    .orFail()
-    .then((card) => res.send(card))
+  Card.findById(id)
+    .orFail(
+      new ResourceNotFoundError('O cartão solicitado não foi encontrado.')
+    )
+    .then((card) => {
+      if (!card.owner.equals(req.user._id))
+        throw new ForbiddenError(
+          'Você não tem permissão para deletar cartões de outros usuários.'
+        );
+      Card.deleteOne(card).then((card) => res.send({ data: card }));
+    })
     .catch(next);
 }
 
@@ -32,8 +42,10 @@ function likeCard(req, res, next) {
     { $addToSet: { likes: req.user._id } },
     { new: true, runValidators: true }
   )
-    .orFail()
-    .then((card) => res.send({ data: card }))
+    .orFail(
+      new ResourceNotFoundError('O cartão solicitado não foi encontrado.')
+    )
+    .then((card, b, c) => res.send({ data: card }))
     .catch(next);
 }
 
@@ -45,7 +57,9 @@ function dislikeCard(req, res, next) {
     { $pull: { likes: req.user._id } },
     { new: true, runValidators: true }
   )
-    .orFail()
+    .orFail(
+      new ResourceNotFoundError('O cartão solicitado não foi encontrado.')
+    )
     .then((card) => res.send({ data: card }))
     .catch(next);
 }

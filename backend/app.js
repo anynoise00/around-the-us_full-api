@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { PORT = 3000, MONGODB_URL = 'aroundb' } = process.env;
 
 const express = require('express');
@@ -13,6 +14,8 @@ const { rateLimit } = require('express-rate-limit');
 
 const app = express();
 const router = require('./routes/router');
+const { login, createUser } = require('./controllers/users');
+const { checkAuthorization } = require('./middlewares/auth');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -32,16 +35,12 @@ app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: '65020a5d1a509af90e423cd3',
-  };
-
-  next();
-});
-
 app.use(requestLogger);
 
+app.post('/signin', login);
+app.post('/signup', createUser);
+
+app.use(checkAuthorization);
 app.use(router);
 
 app.use(errorLogger);
