@@ -1,0 +1,38 @@
+{
+  "name": "around_express",
+  "version": "1.0.0",
+  "description": "`/data` — JSON files to temporarily emulate database integration.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anynoise00/around-express_ptbr.git"
+  },
+  "author": "Vinícius Eduardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anynoise00/around-express_ptbr/issues"
+  },
+  "homepage": "https://github.com/anynoise00/around-express_ptbr#readme",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "celebrate": "^15.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.0",
+    "express-winston": "^4.2.0",
+    "helmet": "^7.0.0",
+    "mongoose": "^7.5.1",
+    "winston": "^3.10.0"
+  }
+}
