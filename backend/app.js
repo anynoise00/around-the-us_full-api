@@ -27,17 +27,8 @@ const limiter = rateLimit({
 mongoose.connect('mongodb://127.0.0.1:27017/aroundb');
 
 app.use(helmet());
-app.use(
-  cors({
-    origin: '*',
-  })
-);
-app.options(
-  '*',
-  cors({
-    origin: '*',
-  })
-);
+app.use(cors());
+app.options('*', cors());
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
