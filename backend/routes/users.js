@@ -41,6 +41,16 @@ router.post(
 );
 
 router.patch(
+  '/me/avatar',
+  celebrate({
+    body: Joi.object().keys({
+      avatar: Joi.string().required().custom(validateURL),
+    }),
+  }),
+  updateAvatar
+);
+
+router.patch(
   '/me',
   celebrate({
     body: Joi.object().keys({
@@ -49,16 +59,6 @@ router.patch(
     }),
   }),
   updateProfile
-);
-
-router.patch(
-  '/me/avatar',
-  celebrate({
-    body: Joi.object().keys({
-      avatar: Joi.string().required().custom(validateURL),
-    }),
-  }),
-  updateAvatar
 );
 
 module.exports = router;
