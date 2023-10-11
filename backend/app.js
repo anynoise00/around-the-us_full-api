@@ -26,14 +26,31 @@ const limiter = rateLimit({
 
 mongoose.connect('mongodb://127.0.0.1:27017/aroundb');
 
+app.use(requestLogger);
+
 app.use(cors());
 app.options('*', cors());
+
+app.use((req, res, next) => {
+  console.log('1');
+  next();
+});
+
+app.use(helmet());
+
+app.use((req, res, next) => {
+  console.log('2');
+  next();
+});
 
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(requestLogger);
+app.use((req, res, next) => {
+  console.log('3');
+  next();
+});
 
 app.get('/crash-test', () => {
   setTimeout(() => {
