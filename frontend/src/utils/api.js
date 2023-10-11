@@ -6,6 +6,8 @@ class Api {
     this._headers = headers;
   }
 
+  _addAuthorization() {}
+
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers,
@@ -65,13 +67,9 @@ class Api {
   }
 }
 
-const groupId = 'web_ptbr_04';
-const token = '56988fc2-c072-4a64-b0a6-6eaae5ae8b3e';
-
 const api = new Api({
-  baseUrl: `https://around.nomoreparties.co/v1/${groupId}`,
+  baseUrl: `http://127.0.0.1:3000`,
   headers: {
-    authorization: token,
     'Content-Type': 'application/json',
   },
 });
