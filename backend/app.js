@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { PORT = 3000, AROUNDB_URL = 'testdb' } = process.env;
+const { PORT = 3000 } = process.env;
 
 const express = require('express');
 const mongoose = require('mongoose');
