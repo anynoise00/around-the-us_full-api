@@ -1,0 +1,14 @@
+.profile__button-add {
+  justify-self: end;
+  width: 150px;
+  height: 50px;
+  background-image: url("../../../images/icon_add.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (max-width: 960px) {
+  .profile__button-add {
+    width: 100%;
+  }
+}

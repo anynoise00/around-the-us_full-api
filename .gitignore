@@ -2,9 +2,13 @@
 logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Diretório de dependências
 node_modules
+/.pnp
+.pnp.js
 
 # Diretório de cache npm opcional
 .npm
@@ -13,5 +17,16 @@ node_modules
 .DS_Store
 .idea
 .vscode
-
 .env
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

@@ -1,0 +1,12 @@
+@media screen and (max-width: 960px) {
+  .header__navbar_collapsible {
+    grid-area: navbar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 0 46px;
+    font-size: 18px;
+    border-bottom: 1px solid #545454;
+  }
+}

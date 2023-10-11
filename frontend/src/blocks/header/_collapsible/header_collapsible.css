@@ -1,0 +1,8 @@
+@media screen and (max-width: 960px) {
+  .header_collapsible {
+    display: grid;
+    grid-template-areas:
+      'navbar navbar'
+      'logo btn';
+  }
+}

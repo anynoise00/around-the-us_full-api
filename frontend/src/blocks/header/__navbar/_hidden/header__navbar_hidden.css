@@ -1,0 +1,8 @@
+@media screen and (max-width: 960px) {
+  .header__navbar_hidden {
+    visibility: hidden;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
+  }
+}

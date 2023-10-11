@@ -1,0 +1,21 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+@media screen and (max-width: 960px) {
+  .popup {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+}

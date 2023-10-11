@@ -1,0 +1,16 @@
+.header__collapse-btn {
+  padding: 0 30px;
+  display: none;
+  border: 0;
+}
+
+.header__collapse-btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 960px) {
+  .header__collapse-btn {
+    grid-area: btn;
+    display: block;
+  }
+}

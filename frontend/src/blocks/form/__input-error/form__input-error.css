@@ -1,0 +1,12 @@
+.form__input-error {
+  width: 100%;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ff0000;
+  overflow-wrap: break-word;
+  opacity: 0;
+  transition: .3s;
+}

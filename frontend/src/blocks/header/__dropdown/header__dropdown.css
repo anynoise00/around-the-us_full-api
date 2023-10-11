@@ -1,0 +1,13 @@
+.header__dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 0 46px;
+  margin: 0 0 27px;
+  font-size: 18px;
+  border-bottom: 1px solid #545454;
+  overflow: hidden;
+  transition: height 0.5s;
+}

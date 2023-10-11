@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 880px;
+  width: 100%;
+  border-bottom: 1px solid #545454;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 960px) {
+  .header {
+    max-width: none;
+    font-size: 14px;
+  }
+}

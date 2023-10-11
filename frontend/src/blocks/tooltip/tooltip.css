@@ -1,0 +1,12 @@
+.tooltip {
+  width: 358px;
+  padding: 60px 36px;
+  text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+  .tooltip {
+    width: 244px;
+    padding: 50px 19px 41px;
+  }
+}

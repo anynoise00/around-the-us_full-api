@@ -1,0 +1,17 @@
+.form__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 216px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+@media screen and (max-width: 960px) {
+  .form__footer {
+    gap: 20px;
+    padding: 173px 0 0;
+    font-size: 12px;
+  }
+}

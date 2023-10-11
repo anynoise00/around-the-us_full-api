@@ -1,0 +1,10 @@
+.form__header {
+  padding-bottom: 38px;
+}
+
+@media screen and (max-width: 960px) {
+  .form__header {
+    font-size: 18px;
+    padding-bottom: 60px;
+  }
+}

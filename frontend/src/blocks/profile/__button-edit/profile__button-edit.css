@@ -1,0 +1,18 @@
+.profile__button-edit {
+  position: relative;
+  top: 17px;
+  grid-area: button;
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../images/icon_edit.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (max-width: 960px) {
+  .profile__button-edit {
+    top: calc(100% - 24px);
+    width: 18px;
+    height: 18px;
+  }
+}

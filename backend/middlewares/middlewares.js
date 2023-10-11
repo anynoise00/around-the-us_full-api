@@ -4,10 +4,9 @@ function errorHandler(err, req, res, next) {
     return;
   }
 
-  const { statusCode = 500, message } = err;
-
   console.log(err);
 
+  const { statusCode = 500, message } = err;
   res.status(statusCode).send({
     message: statusCode === 500 ? 'Um erro ocorreu no servidor.' : message,
   });

@@ -1,0 +1,13 @@
+.header__navbar {
+  grid-area: navbar;
+  display: flex;
+  align-items: center;
+  gap: 58px;
+  text-align: right;
+}
+
+@media screen and (max-width: 960px) {
+  .header__navbar {
+    padding: 0 30px;
+  }
+}

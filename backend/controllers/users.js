@@ -76,7 +76,6 @@ function login(req, res, next) {
   const { email, password } = req.body;
 
   User.findUserByCredentials(email, password)
-
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: '7d',
@@ -87,7 +86,6 @@ function login(req, res, next) {
 }
 
 function getCurrentUser(req, res, next) {
-  console.log(req.user);
   User.findById(req.user._id)
     .orFail(
       new ResourceNotFoundError('O usuário atual não existe no servidor.')

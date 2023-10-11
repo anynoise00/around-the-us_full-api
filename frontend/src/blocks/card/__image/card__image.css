@@ -1,0 +1,10 @@
+.card__image {
+  grid-area: image;
+  width: 282px;
+  height: 282px;
+  cursor: pointer;
+  border-bottom: 2px solid black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
