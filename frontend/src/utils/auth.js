@@ -41,7 +41,7 @@ class Auth {
   }
 }
 
-const auth = new Auth('http://127.0.0.1:3000', {
+const auth = new Auth('https://api.aroundus.mooo.com', {
   'Content-Type': 'application/json',
 });
 

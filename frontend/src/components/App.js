@@ -169,8 +169,18 @@ function App() {
   }
 
   useEffect(() => {
-    api.getUserInfo().then((info) => setCurrentUser(info));
-    api.getInitialCards().then((cards) => setCards(cards));
+    api
+      .getUserInfo()
+      .then((info) => setCurrentUser(info))
+      .catch((err) => {
+        console.log(err);
+      });
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => {
+        console.log(err);
+      });
     handleTokenCheck();
     // eslint-disable-next-line
   }, []);
