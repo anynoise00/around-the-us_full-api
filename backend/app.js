@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { PORT = 3000, MONGODB_URL = 'aroundb' } = process.env;
+const { PORT = 3000, AROUNDB_URL = 'testdb' } = process.env;
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -24,7 +24,7 @@ const limiter = rateLimit({
   limit: 100,
 });
 
-mongoose.connect(`mongodb://127.0.0.1:27017/${MONGODB_URL}`);
+mongoose.connect('mongodb://127.0.0.1:27017/aroundb');
 
 app.use(helmet());
 app.use(cors());
@@ -34,6 +34,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('O servidor travará agora');
+  }, 0);
+});
 
 app.post('/signin', login);
 app.post('/signup', createUser);

@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET = 'dev-secret' } = process.env;
 
 const User = require('../models/user');
 const ResourceNotFoundError = require('../errors/resource-not-found-error');
