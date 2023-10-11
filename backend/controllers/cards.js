@@ -4,6 +4,7 @@ const Card = require('../models/card');
 
 function getCards(req, res, next) {
   Card.find({})
+    .sort({ createdAt: -1 })
     .orFail(new ResourceNotFoundError())
     .then((cards) => res.send(cards))
     .catch(next);

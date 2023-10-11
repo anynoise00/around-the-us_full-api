@@ -281,11 +281,8 @@ function App() {
                     isOpen={pendingDeletion}
                     onClose={closeAllPopups}
                     onSubmit={handleDeleteConfirm}
-                  >
-                    <button type='submit' className='form__button-submit'>
-                      {isLoading ? 'Deletando...' : 'Deletar'}
-                    </button>
-                  </PopupWithForm>
+                    submitBtnText={isLoading ? 'Deletando...' : 'Deletar'}
+                  />
 
                   <ImagePopup card={selectedCard} onClose={closeAllPopups} />
                 </Main>
