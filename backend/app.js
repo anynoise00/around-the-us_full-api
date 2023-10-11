@@ -28,13 +28,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/aroundb');
 
 app.use(
   cors({
-    origin: /aroundus.mooo\.com$/,
+    origin: '*',
   })
 );
 app.options(
   '*',
   cors({
-    origin: /aroundus.mooo\.com$/,
+    origin: '*',
   })
 );
 

@@ -6,18 +6,30 @@ class Api {
     this._headers = headers;
   }
 
-  _addAuthorization() {}
+  _addAuthorization() {
+    const jwt = localStorage.getItem('jwt');
+
+    if (jwt) {
+      return `Bearer ${jwt}`;
+    }
+  }
 
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
     }).then(checkResponse);
   }
 
   setUserInfo({ name, about }) {
     return fetch(this._baseUrl + '/users/me', {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
       body: JSON.stringify({
         name,
         about,
@@ -28,7 +40,10 @@ class Api {
   setUserAvatar({ avatar }) {
     return fetch(this._baseUrl + '/users/me/avatar', {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
       body: JSON.stringify({
         avatar,
       }),
@@ -37,14 +52,20 @@ class Api {
 
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
     }).then(checkResponse);
   }
 
   addCard({ name, link }) {
     return fetch(this._baseUrl + '/cards', {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
       body: JSON.stringify({
         name,
         link,
@@ -55,14 +76,20 @@ class Api {
   deleteCard(cardId) {
     return fetch(this._baseUrl + '/cards/' + cardId, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
     }).then(checkResponse);
   }
 
   changeCardLikeStatus(cardId, isLiked) {
-    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+    return fetch(this._baseUrl + `/cards/${cardId}/likes`, {
       method: `${isLiked ? 'PUT' : 'DELETE'}`,
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        Authorization: this._addAuthorization(),
+      },
     }).then(checkResponse);
   }
 }

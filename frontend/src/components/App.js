@@ -61,9 +61,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    api.changeCardLikeStatus(card._id, !isLiked).then((newCard) => {
-      setCards(cards.map((c) => (c._id === newCard._id ? newCard : c)));
+    const isLiked = card.likes.some((userId) => userId === currentUser._id);
+    api.changeCardLikeStatus(card._id, !isLiked).then((res) => {
+      setCards(cards.map((c) => (c._id === res.data._id ? res.data : c)));
     });
   }
 
@@ -71,9 +71,10 @@ function App() {
     setIsLoading(true);
     api
       .addCard(data)
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
+      .then((card) => {
+        setCards([card.data, ...cards]);
       })
+      .catch((err) => {})
       .finally(() => closeAllPopups());
   }
 
@@ -81,9 +82,10 @@ function App() {
     setIsLoading(true);
     api
       .setUserAvatar(avatar)
-      .then((info) => {
-        setCurrentUser(info);
+      .then((user) => {
+        setCurrentUser(user.data);
       })
+      .catch((err) => {})
       .finally(() => closeAllPopups());
   }
 
@@ -91,9 +93,10 @@ function App() {
     setIsLoading(true);
     api
       .setUserInfo(data)
-      .then((info) => {
-        setCurrentUser(info);
+      .then((user) => {
+        setCurrentUser(user.data);
       })
+      .catch((err) => {})
       .finally(() => closeAllPopups());
   }
 
@@ -106,6 +109,7 @@ function App() {
       .then((_) => {
         setCards(cards.filter((c) => !(c._id === pendingDeletion)));
       })
+      .catch((err) => {})
       .finally(() => closeAllPopups());
   }
 
@@ -120,22 +124,23 @@ function App() {
       });
   }
 
-  function handleLogin(email, password) {
-    auth
-      .login(email, password)
-      .then((_) => {
-        handleTokenCheck();
-      })
-      .catch((err) => {
-        setBadTooltipOpen(true);
-      });
+  function closeAllPopups() {
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setPendingDeletion('');
+    setSelectedCard(undefined);
+
+    setGoodTooltipOpen(false);
+    setBadTooltipOpen(false);
+    setIsLoading(false);
   }
 
   function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt');
 
     if (jwt) {
-      auth
+      return auth
         .authorize(jwt)
         .then((res) => {
           setUserEmail(res.data.email);
@@ -143,6 +148,8 @@ function App() {
         })
         .catch((err) => {});
     }
+
+    return Promise.reject('No JWT in localStorage');
   }
 
   function signIn() {
@@ -156,23 +163,32 @@ function App() {
     navigate('/signin');
   }
 
-  function closeAllPopups() {
-    setIsAddPlacePopupOpen(false);
-    setIsEditAvatarPopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-    setPendingDeletion('');
-    setSelectedCard(undefined);
-
-    setGoodTooltipOpen(false);
-    setBadTooltipOpen(false);
-    setIsLoading(false);
+  function handleLogin(email, password) {
+    auth
+      .login(email, password)
+      .then((_) => {
+        handleTokenCheck();
+      })
+      .catch((err) => {
+        setBadTooltipOpen(true);
+      });
   }
 
   useEffect(() => {
-    //api.getUserInfo().then((info) => setCurrentUser(info));
-    //api.getInitialCards().then((cards) => setCards(cards));
-
-    handleTokenCheck();
+    handleTokenCheck()
+      .then(() => {
+        api
+          .getUserInfo()
+          .then((user) => {
+            setCurrentUser(user.data);
+          })
+          .catch((err) => {});
+        api
+          .getInitialCards()
+          .then((cards) => setCards(cards))
+          .catch((err) => {});
+      })
+      .catch((err) => {});
     // eslint-disable-next-line
   }, []);
 
