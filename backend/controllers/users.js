@@ -33,6 +33,7 @@ function createUser(req, res, next) {
       User.create({
         email,
         password: hash,
+        name,
         about,
         avatar,
       })

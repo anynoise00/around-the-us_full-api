@@ -29,7 +29,7 @@ function deleteCard(req, res, next) {
         throw new ForbiddenError(
           'Você não tem permissão para deletar cartões de outros usuários.'
         );
-      Card.deleteOne(card).then((card) => res.send({ data: card }));
+      Card.deleteOne(card).then((data) => res.send({ data }));
     })
     .catch(next);
 }
@@ -45,7 +45,7 @@ function likeCard(req, res, next) {
     .orFail(
       new ResourceNotFoundError('O cartão solicitado não foi encontrado.')
     )
-    .then((card, b, c) => res.send({ data: card }))
+    .then((card) => res.send({ data: card }))
     .catch(next);
 }
 

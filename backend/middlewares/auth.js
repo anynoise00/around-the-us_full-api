@@ -18,7 +18,7 @@ function checkAuthorization(req, res, next) {
   }
 
   req.user = payload;
-  next();
+  return next();
 }
 
 module.exports = {
