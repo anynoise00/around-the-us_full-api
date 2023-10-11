@@ -48,12 +48,12 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(
     .then((user) => {
       if (!user)
         return Promise.reject(
-          new UnauthenticatedError('E-mail e/ou senha incorretos')
+          new UnauthenticatedError('E-mail ou senha incorretos')
         );
       return bcrypt.compare(password, user.password).then((match) => {
         if (!match)
           return Promise.reject(
-            new UnauthenticatedError('E-mail e/ou senha incorretos')
+            new UnauthenticatedError('E-mail ou senha incorretos')
           );
         return user;
       });
