@@ -32,7 +32,12 @@ app.use(
     origin: '*',
   })
 );
-app.options('*', cors());
+app.options(
+  '*',
+  cors({
+    origin: '*',
+  })
+);
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
