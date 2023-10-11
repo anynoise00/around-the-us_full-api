@@ -91,7 +91,7 @@ function getCurrentUser(req, res, next) {
     .orFail(
       new ResourceNotFoundError('O usuário atual não existe no servidor.')
     )
-    .then((user) => res.send(user))
+    .then((user) => res.send({ data: user }))
     .catch(next);
 }
 

@@ -10,6 +10,7 @@ const {
   updateAvatar,
   getCurrentUser,
 } = require('../controllers/users');
+const { validateURL } = require('../utils/helpers');
 
 router.get('/', getUsers);
 
@@ -33,7 +34,7 @@ router.post(
       password: Joi.string().required().min(8),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2),
-      avatar: Joi.string().uri(),
+      avatar: Joi.string().custom(validateURL),
     }),
   }),
   createUser
@@ -54,7 +55,7 @@ router.patch(
   '/me/avatar',
   celebrate({
     body: Joi.object().keys({
-      avatar: Joi.string().required().uri(),
+      avatar: Joi.string().required().custom(validateURL),
     }),
   }),
   updateAvatar

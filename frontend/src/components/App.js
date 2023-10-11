@@ -141,7 +141,7 @@ function App() {
           setUserEmail(res.data.email);
           signIn();
         })
-        .catch(() => {});
+        .catch((err) => {});
     }
   }
 

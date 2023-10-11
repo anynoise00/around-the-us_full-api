@@ -28,6 +28,7 @@ mongoose.connect(`mongodb://127.0.0.1:27017/${MONGODB_URL}`);
 
 app.use(helmet());
 app.use(cors());
+app.options('*', cors());
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
