@@ -26,16 +26,7 @@ const limiter = rateLimit({
 
 mongoose.connect('mongodb://127.0.0.1:27017/aroundb');
 
-app.use(
-  cors({
-    origin: [
-      'https://aroundus.mooo.com',
-      'https://www.aroundus.mooo.com',
-      'http://aroundus.mooo.com',
-      'http://www.aroundus.mooo.com',
-    ],
-  })
-);
+app.use(cors());
 app.options('*', cors());
 
 app.use(helmet());
