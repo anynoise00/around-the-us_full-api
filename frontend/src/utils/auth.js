@@ -36,7 +36,7 @@ class Auth {
   authorize(token) {
     return fetch(this._baseUrl + '/users/me', {
       method: 'GET',
-      headers: { ...this._headers, Authorization: `Bearer ${token}` },
+      headers: { ...this._headers, Authorization: `${token}` },
     }).then(checkResponse);
   }
 }

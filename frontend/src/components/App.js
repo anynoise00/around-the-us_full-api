@@ -138,7 +138,7 @@ function App() {
   }
 
   function handleTokenCheck() {
-    const jwt = getAuthorization;
+    const jwt = getAuthorization();
 
     if (jwt) {
       return auth
