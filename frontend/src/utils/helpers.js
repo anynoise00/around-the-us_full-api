@@ -6,4 +6,14 @@ function checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-module.exports = { checkResponse };
+function getAuthorization() {
+  const jwt = localStorage.getItem('jwt');
+
+  if (jwt) {
+    return `Bearer ${jwt}`;
+  }
+
+  return null;
+}
+
+module.exports = { checkResponse, getAuthorization };

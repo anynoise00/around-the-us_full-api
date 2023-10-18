@@ -1,4 +1,4 @@
-import { checkResponse } from './helpers';
+import { checkResponse, getAuthorization } from './helpers';
 
 class Api {
   constructor({ baseUrl, headers }) {
@@ -6,19 +6,11 @@ class Api {
     this._headers = headers;
   }
 
-  _addAuthorization() {
-    const jwt = localStorage.getItem('jwt');
-
-    if (jwt) {
-      return `Bearer ${jwt}`;
-    }
-  }
-
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
     }).then(checkResponse);
   }
@@ -28,7 +20,7 @@ class Api {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
       body: JSON.stringify({
         name,
@@ -42,7 +34,7 @@ class Api {
       method: 'PATCH',
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
       body: JSON.stringify({
         avatar,
@@ -54,7 +46,7 @@ class Api {
     return fetch(this._baseUrl + '/cards', {
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
     }).then(checkResponse);
   }
@@ -64,7 +56,7 @@ class Api {
       method: 'POST',
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
       body: JSON.stringify({
         name,
@@ -78,7 +70,7 @@ class Api {
       method: 'DELETE',
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
     }).then(checkResponse);
   }
@@ -88,7 +80,7 @@ class Api {
       method: `${isLiked ? 'PUT' : 'DELETE'}`,
       headers: {
         ...this._headers,
-        Authorization: this._addAuthorization(),
+        Authorization: getAuthorization(),
       },
     }).then(checkResponse);
   }

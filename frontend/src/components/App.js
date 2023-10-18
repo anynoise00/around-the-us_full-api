@@ -20,6 +20,7 @@ import iconInfoBad from '../images/icon_info_bad.svg';
 import api from '../utils/api';
 import auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { getAuthorization } from '../utils/helpers';
 
 function App() {
   const navigate = useNavigate();
@@ -137,7 +138,7 @@ function App() {
   }
 
   function handleTokenCheck() {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = getAuthorization;
 
     if (jwt) {
       return auth
