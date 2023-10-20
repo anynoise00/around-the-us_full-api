@@ -147,6 +147,18 @@ function App() {
           setUserEmail(res.data.email);
           signIn();
         })
+        .then((_) => {
+          api
+            .getUserInfo()
+            .then((user) => {
+              setCurrentUser(user.data);
+            })
+            .catch((err) => {});
+          api
+            .getInitialCards()
+            .then((cards) => setCards(cards))
+            .catch((err) => {});
+        })
         .catch((err) => {});
     }
 
@@ -176,20 +188,7 @@ function App() {
   }
 
   useEffect(() => {
-    handleTokenCheck()
-      .then(() => {
-        api
-          .getUserInfo()
-          .then((user) => {
-            setCurrentUser(user.data);
-          })
-          .catch((err) => {});
-        api
-          .getInitialCards()
-          .then((cards) => setCards(cards))
-          .catch((err) => {});
-      })
-      .catch((err) => {});
+    handleTokenCheck().catch((err) => {});
     // eslint-disable-next-line
   }, []);
 
