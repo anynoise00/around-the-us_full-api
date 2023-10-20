@@ -10,3 +10,4 @@ O backend utiliza o Express.js para organizar as rotas e a interação com o ban
 - Os usuários podem se registrar no site e terão suas senhas criptografadas usando o bcrypt;
 - O backend também utiliza CORS e certificações HTTPS para garantir que tudo esteja seguro;
 - Ao logar no site, o usuário recebe um token feito com jsonwebtoken para garantir que está tudo certo com ele.
+  [![Veja uma preview do projeto](https://img.youtube.com/vi/v7mBSW8W3Gk/hqdefault.jpg)](https://youtu.be/v7mBSW8W3Gk)

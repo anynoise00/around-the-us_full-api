@@ -145,21 +145,13 @@ function App() {
         .authorize(jwt)
         .then((res) => {
           setUserEmail(res.data.email);
-        })
-        .then((_) => {
-          api
-            .getUserInfo()
-            .then((user) => {
+          Promise.all([api.getUserInfo(), api.getInitialCards()])
+            .then((values) => {
+              const [user, cards] = values;
               setCurrentUser(user.data);
+              setCards(cards);
             })
-            .catch((err) => {});
-          api
-            .getInitialCards()
-            .then((cards) => setCards(cards))
-            .catch((err) => {});
-        })
-        .then((_) => {
-          signIn();
+            .then((_) => signIn());
         })
         .catch((err) => {});
     }
