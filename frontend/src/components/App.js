@@ -145,7 +145,6 @@ function App() {
         .authorize(jwt)
         .then((res) => {
           setUserEmail(res.data.email);
-          signIn();
         })
         .then((_) => {
           api
@@ -158,6 +157,9 @@ function App() {
             .getInitialCards()
             .then((cards) => setCards(cards))
             .catch((err) => {});
+        })
+        .then((_) => {
+          signIn();
         })
         .catch((err) => {});
     }
