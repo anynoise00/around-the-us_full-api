@@ -13,6 +13,12 @@ This project was made for TripleTen's online web development bootcamp.
 
 ### Click [here](https://aroundtheus.anynoise.dev/) to visit the website.
 
+You can use the account below to check the website without needing to register:
+```
+Login: usuario@mail.com
+Password: senhasenha
+```
+
 ## Mobile layout
 
 <img src="./assets/img/mobile-1.jpg" width="200" alt="Mobile image 1"> <img src="./assets/img/mobile-2.jpg" width="200" alt="Mobile image 2"> <img src="./assets/img/mobile-3.jpg" width="200" alt="Mobile image 2">
