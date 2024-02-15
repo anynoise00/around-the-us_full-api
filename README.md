@@ -1,13 +1,32 @@
-# Around the US - API Completa
+# Around the US - Full API
 
-Uma página interativa onde os usuários podem adicionar, remover e curtir fotos.
+![Front page image](./assets/img/frontpage.png)  
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](./LICENSE)
 
-Este projeto contém o frontend e o backend do site Around the US, que pode ser acessado no pelo seguinte [link](https://aroundus.mooo.com/).
+## About
 
-O frontend foi feito usando React.js, deixando o site responsivo e também protegendo certas rotas de usuários não registrados.
-O backend utiliza o Express.js para organizar as rotas e a interação com o banco de dados, que foi feito usando o MongoDB e o mongoose.
+A single page application where users can post photos and like photos uploaded by other users, made using React and Express.
 
-- Os usuários podem se registrar no site e terão suas senhas criptografadas usando o bcrypt;
-- O backend também utiliza CORS e certificações HTTPS para garantir que tudo esteja seguro;
-- Ao logar no site, o usuário recebe um token feito com jsonwebtoken para garantir que está tudo certo com ele.
-  [![Veja uma preview do projeto](https://img.youtube.com/vi/v7mBSW8W3Gk/hqdefault.jpg)](https://youtu.be/v7mBSW8W3Gk)
+This project is an improvement of the [Around React](https://github.com/anynoise00/around-react) project, it still uses React for the front-end, but now some routes are protected from users that are not logged in. The back-end was made using Express, and while doing it, I learned about CORS, JWT and password encryption.
+
+This project was made for TripleTen's online web development bootcamp.
+
+### Click [here](https://aroundtheus.anynoise.dev/) to visit the website.
+
+## Mobile layout
+
+<img src="./assets/img/mobile-1.jpg" width="200" alt="Mobile image 1"> <img src="./assets/img/mobile-2.jpg" width="200" alt="Mobile image 2"> <img src="./assets/img/mobile-3.jpg" width="200" alt="Mobile image 2">
+
+## Technologies
+
+The following tools where used for building this project:
+
+- [React](https://reactjs.org/)
+- [Express](https://expressjs.com/)
+- HTML, CSS & JavaScript
+- BEM methodology
+
+## Credits
+
+This projects uses [TripleTen](https://tripleten.com/)'s figma template  
+[![Figma Badge](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](<https://www.figma.com/file/HyMToCsnGeUL35awWZJHz6/WEB.-Sprint-4.-Around-The-U.S.-desktop-%2B-mobile-pt-(Copy)?type=design&node-id=0-1&mode=design&t=ClOh3EiGpuWKWXEn-0>)
