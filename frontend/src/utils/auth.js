@@ -41,7 +41,7 @@ class Auth {
   }
 }
 
-const auth = new Auth('https://api.aroundus.mooo.com', {
+const auth = new Auth('https://api-aroundtheus.anynoise.dev', {
   'Content-Type': 'application/json',
 });
 

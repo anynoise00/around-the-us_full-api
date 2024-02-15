@@ -87,7 +87,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: `https://api.aroundus.mooo.com`,
+  baseUrl: `https://api-aroundtheus.anynoise.dev`,
   headers: {
     'Content-Type': 'application/json',
   },
